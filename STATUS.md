@@ -1,31 +1,37 @@
 **Projekt:** DXTR Code-Scanner
-**Chief:** Chief Infrastruktur (vorläufig zugeordnet, zu bestätigen)
-**Stand:** 26.07.2026
+**Chief:** Chief Infrastruktur (vorläufig zugeordnet, weiterhin zu bestätigen)
+**Stand:** 03.08.2026
 **Ampel:** 🟢 läuft
 
 ## Kurzzusammenfassung
-Node/Express-Webtool (`server.js`), das ein Code-Repo scannt und Ergebnisse gegen eine Playbook-Datenbank (`lib/playbookDatabase.js`, `lib/patterns.js`, `lib/repoGuard.js`) abgleicht. Statisches Frontend unter `public/`, Endpoint `/api/scan`, Rate-Limit 3 Requests/15min pro IP, Deployment via Dockerfile.
+Node/Express-Webtool (`server.js`), das ein Code-Repo scannt und Ergebnisse gegen eine Playbook-Datenbank (`lib/playbookDatabase.js`, `lib/patterns.js`, `lib/repoGuard.js`) abgleicht. Statisches Frontend unter `public/`, Endpoint `/api/scan`, Rate-Limit 3 Requests/15min pro IP, Deployment via Dockerfile. Live unter https://code.dxtr.de (HTTP 200, `/api/health` antwortet).
 
 ## Seit letztem Report erledigt
-- (Erster Report — kein Vorlauf.)
+- Lokaler Ordner ist inzwischen an GitHub angebunden (`.git` vorhanden, `origin` zeigt korrekt auf `MarkoJVogt/dxtr-scanner`) — der zuvor gemeldete Blocker ("kein .git-Verzeichnis") ist damit gelöst.
 
 ## In Arbeit
-- Aktuell keine aktive Entwicklung. GitHub-Repo hat nur 2 Commits, letzter Push 15.07.2026 ("Initial commit" + .gitignore-Fix). Keine offenen Issues/PRs auf GitHub.
+- Untracked `package-lock.json` liegt lokal (nicht committed — vermutlich aus lokalem `npm install`), unkritisch.
+- Coolify-Redeploy noch zu prüfen: falls kein Auto-Deploy-Webhook eingerichtet ist, muss der neue Commit manuell in Coolify deployt werden, damit die Verbesserung auch live auf code.dxtr.de ankommt.
 
 ## Blocker / offene Entscheidungen für Marko
-- Lokaler Projektordner ist NICHT mit dem GitHub-Repo verknüpft (kein `.git`-Verzeichnis vorhanden) — lokale Änderungen würden aktuell nicht auf GitHub landen.
-- Chief-Zuordnung "Infrastruktur" ist eine Annahme meinerseits, nicht bestätigt — Tool passt inhaltlich eher zu keinem der bisherigen Chiefs speziell (es ist ein eigenständiges Code-Scan-Produkt).
-- Kein Deployment-Ziel dokumentiert: Dockerfile vorhanden, aber keine bekannte Live-URL/Coolify-Eintrag — unklar, ob/wo das Tool aktuell läuft.
+- Chief-Zuordnung "Infrastruktur" weiterhin nur eine Annahme, nicht bestätigt.
+- Kein Coolify-App-Eintrag hier dokumentiert, obwohl das Tool nachweislich unter code.dxtr.de live läuft — Registry-Abgleich empfohlen.
 
 ## Nächste Schritte
-- Entscheiden: lokalen Ordner per `git init` + `git remote add` an `MarkoJVogt/dxtr-scanner` anbinden, oder Ordner ist bewusst nur eine lokale Kopie?
-- Deployment-Ziel klären (Hetzner/Coolify gemäß Fundament-Vorgabe der Systemkarte, oder woanders) und in Systemkarte/Registry nachtragen.
-- Chief-Zuordnung mit Marko bestätigen oder korrigieren.
-- README/Repo-Beschreibung auf GitHub ergänzen (aktuell leer).
+- Prüfen, ob code.dxtr.de nach dem Push automatisch neu deployt oder ein manueller Coolify-Trigger nötig ist.
+- README/Repo-Beschreibung auf GitHub ergänzen (weiterhin leer).
+- Deployment-Ziel/Coolify-Eintrag formal in der Registry nachtragen (Tool läuft nachweislich, nur nicht dokumentiert wo).
 
 ## Anweisung vom Masterchief (26.07.2026)
-- ✅ erledigt am 26.07.2026 — "In Arbeit" und "Nächste Schritte" oben ausgefüllt, auf Basis von GitHub-API-Check (Commits, Issues, PRs) statt Vermutung. Neue offene Punkte dabei aufgedeckt, siehe "Blocker" oben.
+- ✅ erledigt am 26.07.2026 — "In Arbeit" und "Nächste Schritte" oben ausgefüllt, auf Basis von GitHub-API-Check (Commits, Issues, PRs) statt Vermutung.
+
+## Anweisung vom Masterchief (03.08.2026)
+- Live-Status verifiziert (HTTP 200 + /api/health), Git-Anbindung bestätigt, zwei uncommittete lokale Änderungen gefunden, geprüft und oben dokumentiert. Committen/Pushen bewusst nicht selbst vorgenommen, da keine explizite Freigabe dafür vorliegt.
+
+## Anweisung vom Masterchief (03.08.2026, Nachtrag)
+- **Marko hat den Push freigegeben** ("push", in Reaktion auf den Masterchief-Report vom 03.08.2026). Commit `930f741` erstellt und nach `origin/main` gepusht. Coolify-Redeploy-Status nicht geprüft (kein Coolify-Zugang in dieser Session) — bitte code.dxtr.de nach Redeploy gegenchecken, ob die bare-Hostname/www-Verbesserung live ist.
 
 ## Links
 - Systemkarte-Eintrag: Abschnitt 07 — Weitere GitHub-Repos
+- Live: https://code.dxtr.de
 - Repo: https://github.com/MarkoJVogt/dxtr-scanner (öffentlich)
