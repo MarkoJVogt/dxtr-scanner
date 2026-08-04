@@ -31,6 +31,11 @@ Node/Express-Webtool (`server.js`), das ein Code-Repo scannt und Ergebnisse gege
 ## Anweisung vom Masterchief (03.08.2026, Nachtrag)
 - **Marko hat den Push freigegeben** ("push", in Reaktion auf den Masterchief-Report vom 03.08.2026). Commit `930f741` erstellt und nach `origin/main` gepusht. Coolify-Redeploy-Status nicht geprüft (kein Coolify-Zugang in dieser Session) — bitte code.dxtr.de nach Redeploy gegenchecken, ob die bare-Hostname/www-Verbesserung live ist.
 
+## Anweisung vom Masterchief (04.08.2026)
+- Marko hat nachgefragt, ob der Scan auch den EU AI Act einbezieht — Prüfung ergab: aktuell **nein**. `lib/patterns.js` deckt nur Secrets (AWS/Google/Stripe/OpenAI Keys, private Keys) und PII-in-Logs ab; keine Compliance- oder AI-Act-Prüfung vorhanden.
+- **Anforderung von Marko:** Das Tool muss explizit auf EU-AI-Act-Konformität prüfen. Zusätzlich soll der Scope über reines Code-Scanning hinausgehen und auch **Abläufe/Prozesse, Homepages und Apps** auf Compliance und EU-AI-Act-Konformität prüfen (nicht nur Source-Code-Repos).
+- **Nächster Schritt für den zuständigen Chief:** Konzept erarbeiten, wie EU-AI-Act-Konformitätsprüfung (z. B. Risikoklassifizierung von KI-Komponenten, Transparenzpflichten, Kennzeichnungspflichten) sowie Prozess-/Homepage-/App-Scans (nicht nur Repo-Scans) technisch und rechtlich sauber umgesetzt werden können, und Vorschlag zur Rückmeldung an Marko vorlegen.
+
 ## Links
 - Systemkarte-Eintrag: Abschnitt 07 — Weitere GitHub-Repos
 - Live: https://code.dxtr.de
