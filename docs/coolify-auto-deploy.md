@@ -9,6 +9,18 @@ auf `github.com/MarkoJVogt/dxtr-scanner` (Settings → Webhooks). Beides hat akt
 Marko; die Coolify-URL selbst ist noch nirgends dokumentiert (offener Punkt in der
 Systemkarte, Abschnitt Fundstellen).
 
+**Falls der Coolify-Login blockiert ist** (Passwort unbekannt oder IP-Zugriffslogik
+verweigert den Login — ist am 05.08.2026 so aufgetreten): per SSH auf den Hetzner-Server
+(`ssh root@178.105.170.226`), dann Root-Passwort direkt im Coolify-Container zurücksetzen:
+
+```bash
+docker exec -ti coolify sh -c "php artisan root:reset-password"
+# bei Bedarf zusätzlich:
+docker exec -ti coolify sh -c "php artisan root:change-email"
+```
+
+Quelle: [Coolify Docs — Commands](https://coolify.io/docs/knowledge-base/commands).
+
 Zwei Wege — Weg A ist vorzuziehen, wenn die Coolify-Instanz bereits eine GitHub-App
 verbunden hat (dann oft schon aktiv, nur zu prüfen); sonst Weg B.
 
