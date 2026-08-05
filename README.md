@@ -39,7 +39,9 @@ Erfordert `git` im `$PATH` (wird zum flachen Klonen der Ziel-Repos genutzt).
 ## Deployment
 
 Containerisiert via `Dockerfile` (Node 20, `git` installiert für den Clone-Schritt).
-Deployment-Ziel: Coolify → https://code.dxtr.de.
+Deployment-Ziel: Coolify → https://code.dxtr.de. Auto-Deploy bei Push ist noch nicht
+eingerichtet (jeder Push braucht aktuell einen manuellen Coolify-Redeploy) — Anleitung
+dafür: [`docs/coolify-auto-deploy.md`](docs/coolify-auto-deploy.md).
 
 ## Struktur
 

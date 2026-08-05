@@ -11,6 +11,7 @@ Node/Express-Webtool (`server.js`), das ein Code-Repo scannt und Ergebnisse gege
 
 ## Nächste Schritte
 - **Manuellen Coolify-Redeploy auslösen**, danach erneut per Live-Scan verifizieren, dass `aiActFindings` in der `/api/scan`-Antwort auftaucht.
+- **Auto-Deploy einrichten**, damit dieser manuelle Schritt künftig entfällt — Schritt-für-Schritt-Anleitung liegt bereit unter [`docs/coolify-auto-deploy.md`](docs/coolify-auto-deploy.md) (GitHub-Webhook → Coolify, Secret, Auto-Deploy-Schalter). Braucht Coolify-Dashboard-Zugriff, den aktuell nur Marko hat.
 - Deployment-Ziel/Coolify-Eintrag formal in der Registry nachtragen (Tool läuft nachweislich, nur nicht dokumentiert wo).
 - Konzept für Scope-Erweiterung (Prozesse/Homepages/Apps, s. Anweisung 04.08.) noch zu erarbeiten.
 
