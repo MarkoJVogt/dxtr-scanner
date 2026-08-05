@@ -60,7 +60,7 @@
 <div class="wrap">
   <div id="siteHeader"><img src="/dxtr-logo.png" alt="DXTR" /></div>
   <h1>DXTR — Code-Scan</h1>
-  <p class="sub">Prototyp · scannt ein öffentliches Repository auf Tech-Stack, Secrets und PII-Logging.</p>
+  <p class="sub">Prototyp · scannt ein öffentliches Repository auf Tech-Stack, Secrets, PII-Logging und EU-AI-Act-Indikatoren.</p>
 
   <div class="scan-box">
     <input type="text" id="urlInput" placeholder="github.com/owner/repo" />
@@ -180,6 +180,12 @@ function render(data) {
       </details>
       <details><summary>PII-Log-Treffer (${findings.piiLogFindings.length})</summary>
         <ul>${findings.piiLogFindings.map(f => `<li>${escapeHtml(f.name)} — ${escapeHtml(f.file)}</li>`).join('') || '<li>keine</li>'}</ul>
+      </details>
+      <details><summary>EU-AI-Act-Hochrisiko-Treffer (${findings.aiActFindings.highRiskHits.length})</summary>
+        <ul>${findings.aiActFindings.highRiskHits.map(f => `<li>${escapeHtml(f.name)} — ${escapeHtml(f.file)}</li>`).join('') || '<li>keine</li>'}</ul>
+      </details>
+      <details><summary>Erkannte KI-/LLM-Bibliotheken (${findings.aiActFindings.aiLibsDetected.length})</summary>
+        <ul>${findings.aiActFindings.aiLibsDetected.map(d => `<li>${escapeHtml(d)}</li>`).join('') || '<li>keine</li>'}</ul>
       </details>
     </div>
   </div>`;
