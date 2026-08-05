@@ -1,8 +1,16 @@
 # Coolify Auto-Deploy einrichten
 
-**Ziel:** `git push` auf `main` löst automatisch einen Redeploy von code.dxtr.de aus,
-ohne manuellen Klick in Coolify. Aktuell (Stand 05.08.2026) nicht eingerichtet — jeder
-Push muss manuell in Coolify neu deployt werden (s. `STATUS.md`).
+**Status: ✅ eingerichtet am 05.08.2026.** `git push` auf `main` löst jetzt automatisch
+einen Redeploy von code.dxtr.de aus — kein manueller Klick in Coolify mehr nötig.
+Verifiziert mit Commit `d02abe3` (leerer Test-Commit): GitHub-Zustellung `200`, Coolify
+hat innerhalb von ~30 Sekunden automatisch neu gebaut. Der Rest dieser Seite bleibt als
+Referenz stehen — z. B. falls der Webhook mal neu angelegt werden muss oder als Vorlage
+für andere Apps auf demselben Server.
+
+**Was eingerichtet wurde:** Coolifys "Auto Deploy"-Schalter war schon aktiv (Weg A
+teilweise vorbereitet). Der GitHub-Webhook (Weg B) fehlte noch und wurde per `gh api`
+angelegt: Payload-URL `http://178.105.170.226:8000/webhooks/source/github/events/manual`,
+Event `push`, Secret aus Coolifys Webhooks-Seite übernommen (GitHub-Hook-ID `661653130`).
 
 **Voraussetzung:** Zugriff auf das Coolify-Dashboard für diese App sowie Admin-Rechte
 auf `github.com/MarkoJVogt/dxtr-scanner` (Settings → Webhooks). Beides hat aktuell nur
@@ -68,15 +76,12 @@ Dann in Coolify den Deployment-Log der App prüfen (sollte kurz nach dem Push st
 und/oder auf GitHub unter dem Webhook **"Recent Deliveries"** auf eine `200`-Antwort
 von Coolify prüfen.
 
-Danach live bestätigen, dass der neue Stand ausgeliefert wird — z. B. mit dem gleichen
-Live-Check, der schon für den aktuellen ausstehenden Redeploy genutzt wurde:
+Danach live bestätigen, dass der neue Stand ausgeliefert wird, z. B. per `Last-Modified`-
+Header-Vergleich vor/nach dem Push:
 
 ```bash
-curl -s https://code.dxtr.de/ | grep -o 'class="sub">[^<]*'
+curl -sI https://code.dxtr.de/ | grep -i last-modified
 ```
-
-Sollte den aktuellen Untertitel zeigen (inkl. "EU-AI-Act-Indikatoren"), sobald der
-ausstehende Redeploy (Commits bis `91e650c`) durchgelaufen ist.
 
 ## Quellen
 - [Coolify Docs — GitHub Auto Deploy](https://coolify.io/docs/applications/ci-cd/github/auto-deploy)
